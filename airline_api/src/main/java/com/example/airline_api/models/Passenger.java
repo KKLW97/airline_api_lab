@@ -18,11 +18,11 @@ public class Passenger {
     private String name;
 
     @Column(name = "phone_number")
-    private int phoneNumber;
+    private String phoneNumber; // Used String because number is too big for int and long (throws an error)
 
     private List<Flight> flights;
 
-    public Passenger(String name, int phoneNumber){
+    public Passenger(String name, String phoneNumber){
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.flights = new ArrayList<>();
@@ -48,11 +48,11 @@ public class Passenger {
         this.name = name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -62,5 +62,13 @@ public class Passenger {
 
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
+    }
+
+    public void addFlights(Flight flight) {
+        this.flights.add(flight);
+    }
+
+    public void removeFlight(Flight flight){
+        this.flights.remove(flight);
     }
 }

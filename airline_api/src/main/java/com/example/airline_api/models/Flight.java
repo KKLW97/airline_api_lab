@@ -2,6 +2,9 @@ package com.example.airline_api.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "flights")
 public class Flight {
@@ -23,10 +26,13 @@ public class Flight {
     @Column(name = "departure_time")
     private String departureTime;
 
+    private List<Passenger> passengers;
+
     public Flight(String destination, String departureDate, String departureTime){
         this.destination = destination;
         this.departureDate = departureDate;
         this.departureTime = departureTime;
+        this.passengers = new ArrayList<Passenger>();
     }
 
     public Flight(){
