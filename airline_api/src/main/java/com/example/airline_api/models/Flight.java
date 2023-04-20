@@ -7,4 +7,7 @@ import jakarta.persistence.Table;
 @Table(name = "flights")
 public class Flight {
 
+    private Long id;
+    private String destination;
+    private 
 }
