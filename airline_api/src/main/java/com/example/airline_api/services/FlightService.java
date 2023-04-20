@@ -21,4 +21,8 @@ public class FlightService {
     public Flight findFlight(Long flightId) {
         return flightRepository.findById(flightId).get();
     }
+
+    public void saveFlight(Flight flight) {
+        flightRepository.save(flight);
+    }
 }
