@@ -13,7 +13,7 @@ public class PassengerService {
     @Autowired
     PassengerRepository passengerRepository;
 
-    public List<Passenger> findAll() {
+    public List<Passenger> findAllPassengers() {
         return passengerRepository.findAll();
     }
 }
