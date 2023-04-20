@@ -22,7 +22,7 @@ public class PassengerController {
 //    Get all passengers
     @GetMapping
     public ResponseEntity<List<Passenger>> getAllPassengers(){
-        return new ResponseEntity<>(passengerService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(passengerService.findAllPassengers(), HttpStatus.OK);
 
     }
 }
