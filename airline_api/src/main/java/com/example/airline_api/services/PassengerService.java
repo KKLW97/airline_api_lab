@@ -7,6 +7,7 @@ import com.example.airline_api.repositories.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,5 +37,17 @@ public class PassengerService {
             passenger.addFlight(flight);
         }
         return passengerRepository.save(passenger);
+    }
+
+    public Passenger updatePassenger(PassengerDTO passengerDTO, Long id) {
+        Passenger passengerToUpdate = passengerRepository.findById(id).get();
+        passengerToUpdate.setName(passengerDTO.getName());
+        passengerToUpdate.setPhoneNumber(passengerDTO.getPhoneNumber());
+        passengerToUpdate.setFlights(new ArrayList<>());
+        for(Long flightId : passengerDTO.getFlightIds()){
+            Flight flight = flightService.findFlight(flightId);
+            passengerToUpdate.addFlight(flight);
+        }
+        return passengerRepository.save(passengerToUpdate);
     }
 }
