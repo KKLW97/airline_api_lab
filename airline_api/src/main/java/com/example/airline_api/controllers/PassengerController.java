@@ -3,6 +3,8 @@ package com.example.airline_api.controllers;
 import com.example.airline_api.models.Passenger;
 import com.example.airline_api.services.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +22,7 @@ public class PassengerController {
 //    Get all passengers
     @GetMapping
     public ResponseEntity<List<Passenger>> getAllPassengers(){
-        return new ResponseEntity<>(passengerService.findAll());
+        return new ResponseEntity<>(passengerService.findAll(), HttpStatus.OK);
 
     }
 }
