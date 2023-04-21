@@ -1,6 +1,7 @@
 package com.example.airline_api.controllers;
 
 import com.example.airline_api.models.Flight;
+import com.example.airline_api.models.Passenger;
 import com.example.airline_api.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,11 +42,17 @@ public class FlightController {
 
 //    DESTROY
 //    Cancel Flight Booking
-//    cancels flight bookings for all passengers but does not delete the flight itself
+//    cancels flight bookings for all passengers
 //    can alter code to delete for just one passenger rather than all passengers by removing the for loop
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Long> cancelFlight(@PathVariable Long id){
-        flightService.removeFlightIdsFromPassengers(id);
+        flightService.removeFlightIdsFromAllPassengers(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+//    @DeleteMapping(value = "/{id}")
+//    public ResponseEntity<Long> cancelFlightBookingForPassenger(@PathVariable Long id){
+//        flightService.removeFlightIdsFromPassenger(id);
+//        return new ResponseEntity<>(id, HttpStatus.OK);
+//    }
 }

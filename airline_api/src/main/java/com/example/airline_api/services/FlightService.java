@@ -31,12 +31,20 @@ public class FlightService {
         flightRepository.save(flight);
     }
 
-    public void removeFlightIdsFromPassengers(Long id) {
+    public void removeFlightIdsFromAllPassengers(Long id) {
         Flight flight = flightRepository.findById(id).get();
 //        for loop to delete flight in the passenger objects
         for (Passenger passenger : flight.getPassengers()) {
             passenger.removeFlight(flight);
             passengerRepository.save(passenger);
-        }
+        } flightRepository.deleteById(id);
     }
+
+//    incomplete code to remove one flight for one passenger and not affect booking for other passengers
+
+//    public void removeFlightIdsFromPassenger(Long id) {
+//        Flight flight = flightRepository.findById(id).get();
+//        passenger.removeFlight(flight);
+//        passengerRepository.save(passenger);
+//    }
 }
