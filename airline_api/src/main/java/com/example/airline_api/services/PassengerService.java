@@ -59,5 +59,14 @@ public class PassengerService {
 //    public Passenger saveUpdatedPassenger(Passenger passenger){
 //        return passengerRepository.save(passenger);
 //    }
-//
+
+
+
+//    Attempt at cancel one booking for one passenger
+    public Passenger findFlightAndCancelBooking(Long passengerId, Long flightId){
+        Passenger passenger =  passengerRepository.findById(passengerId).get();
+        Flight foundFlight =flightService.findFlight(flightId);
+        passenger.removeFlight(foundFlight);
+        return passengerRepository.save(passenger);
+    }
 }

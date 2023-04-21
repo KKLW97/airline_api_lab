@@ -49,5 +49,9 @@ public class PassengerController {
         return new ResponseEntity<>(updatedPassenger, HttpStatus.OK);
     }
 
-
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Passenger> cancelFlightBookingForPassenger(@PathVariable Long id, @RequestParam Long flightId){
+        Passenger updatedPassenger = passengerService.findFlightAndCancelBooking(id, flightId);
+        return new ResponseEntity<>(updatedPassenger, HttpStatus.OK);
+    }
 }
