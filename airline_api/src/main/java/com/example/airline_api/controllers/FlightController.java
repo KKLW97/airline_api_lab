@@ -37,6 +37,15 @@ public class FlightController {
     public ResponseEntity<Flight> addNewFlight(@RequestBody Flight flight){
         flightService.saveFlight(flight);
         return new ResponseEntity<>(flight, HttpStatus.CREATED);
+    }
 
+//    DESTROY
+//    Cancel Flight Booking
+//    cancels flight bookings for all passengers but does not delete the flight itself
+//    can alter code to delete for just one passenger rather than all passengers by removing the for loop
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Long> cancelFlight(@PathVariable Long id){
+        flightService.removeFlightIdsFromPassengers(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }

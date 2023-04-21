@@ -34,7 +34,7 @@ public class PassengerService {
 //        Add all flights to the passenger
         for(Long flightId : passengerDTO.getFlightIds()){
             Flight flight = flightService.findFlight(flightId);
-            passenger.addFlight(flight);
+            passenger.addFlights(flight);
         }
         return passengerRepository.save(passenger);
     }
@@ -46,8 +46,18 @@ public class PassengerService {
         passengerToUpdate.setFlights(new ArrayList<>());
         for(Long flightId : passengerDTO.getFlightIds()){
             Flight flight = flightService.findFlight(flightId);
-            passengerToUpdate.addFlight(flight);
+            passengerToUpdate.addFlights(flight);
         }
         return passengerRepository.save(passengerToUpdate);
     }
+
+//   THREW ERROR WHEN @AUTOWIRED PASSENGER SERVICE INTO FLIGHT SERVICE
+//    WANTED TO USE SPECIFIED SERVICES TO ACCESS SPECIFIED REPOSITORIES
+//    FLIGHT SERVICE ONLY HAS ACCESS TO FLIGHT REPOSITORY
+//    THEREFORE THE SAVEUPDATEDPASSENGER IS NOW OBSELETE
+
+//    public Passenger saveUpdatedPassenger(Passenger passenger){
+//        return passengerRepository.save(passenger);
+//    }
+//
 }
